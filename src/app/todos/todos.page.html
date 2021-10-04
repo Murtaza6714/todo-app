@@ -1,0 +1,21 @@
+<ion-header>
+    <ion-toolbar color="secondary">
+      <ion-title> Todos </ion-title>
+      <!-- <ion-buttons end>
+        <button ion-button icon-only (click)="close()">
+          <ion-icon name="close"></ion-icon>
+        </button>
+      </ion-buttons> -->
+      <ion-button slot="end" [routerLink]="['/todos/add-todo']">
+        <ion-icon slot="icon-only" name="add-circle"></ion-icon>
+      </ion-button>
+    </ion-toolbar>
+    <ion-searchbar (ionChange)="Filtertodo($event)" animated ></ion-searchbar>
+  <!-- </ion-navbar> -->
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let item of searchItem" >
+      {{item.title}} <ion-button color="success" [routerLink]="['./',item._id]" slot="end">Update</ion-button><ion-button color="danger" (click)="onDeleteTodo(item._id)" slot="end">Delete</ion-button></ion-item>
+  </ion-list>
+</ion-content>

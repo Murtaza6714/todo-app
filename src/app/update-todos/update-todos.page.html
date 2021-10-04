@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-title> Update Todo </ion-title>
+    <!-- <ion-buttons end>
+      <button ion-button icon-only (click)="close()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons> -->
+    <ion-back-button slot="end" defaultHref='/todos'></ion-back-button>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label floating>Title</ion-label>
+      <ion-input type="text" [(ngModel)]="title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Task</ion-label>
+      <ion-input type="text" [(ngModel)]="task"></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-button expand='full' ion-button color="secondary">Save</ion-button>
+  <!-- <ion-item *ngIf="hasError">
+    <ion-title>{{errorMessage}}</ion-title>
+  </ion-item> -->
+</ion-content>
