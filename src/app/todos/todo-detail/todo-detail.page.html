@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>todo-detail</ion-title>
+    <ion-back-button slot="end" defaultHref='/todos'></ion-back-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-content fullscreen>
+    <ion-card>
+      <!-- <img src="./madison.jpg" /> -->
+      <ion-card-header>
+        <ion-card-subtitle>Destination</ion-card-subtitle>
+        <ion-card-title>{{title}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        {{task}}
+      </ion-card-content>
+      <ion-item>
+      <ion-label>Mark as complete</ion-label>
+        <ion-checkbox slot="start" color="success" (ionChange)="isCompleted($event)"></ion-checkbox>
+      </ion-item>
+    </ion-card>
+  </ion-content>
+</ion-content>

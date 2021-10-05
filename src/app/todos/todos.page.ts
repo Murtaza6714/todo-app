@@ -9,17 +9,45 @@ import { AlertController } from '@ionic/angular';
   templateUrl: './todos.page.html',
   styleUrls: ['./todos.page.scss'],
 })
-export class TodosPage implements OnInit {
+export class TodosPage {
   items: any;
   searchItem: any;
+  highPriorityItems: any;
+  completedTodos: any;
+  hasTodos: any;
+  hasHighPriorityTodos: any;
+  hasCompletedTodos: any;
+
+
   constructor(private http: HttpClient,private router: Router,private alertCtrl: AlertController) { }
 
-  ngOnInit() {
+  ionViewWillEnter() {
     console.log('hello');
     this.http.get('http://localhost:3000/api/todos').subscribe(res => {
       this.items = res;
       this.searchItem = res;
+      if(this.items.length <= 0) {
+        this.hasTodos = false;
+      }else{
+        this.hasTodos = true;
       console.log('searchItem : ', this.searchItem);
+      }
+    });
+    this.http.get('http://localhost:3000/api/todos/has-high-priority').subscribe(res => {
+      this.highPriorityItems = res;
+      if(this.highPriorityItems.length <= 0) {
+        this.hasHighPriorityTodos = false;
+      }else{
+        this.hasHighPriorityTodos = true;
+      }
+    });
+    this.http.get('http://localhost:3000/api/todos/is-completed').subscribe(res => {
+      this.completedTodos = res;
+      if(this.completedTodos.length <= 0) {
+        this.hasCompletedTodos = false;
+      }else{
+        this.hasCompletedTodos = true;
+      }
     });
   }
   Filtertodo(ev: any) {
@@ -32,6 +60,24 @@ export class TodosPage implements OnInit {
         });
       }
     ;  }
+    FilterHighPrioritytodo(ev: any) {
+      const val = ev.detail.value;
+        if(val && val.trim() !== '') {
+          // eslint-disable-next-line arrow-body-style
+          this.highPriorityItems = this.highPriorityItems.filter((item: any) => {
+            return (item.title.toLowerCase().indexOf(val.toLowerCase()) > -1);
+          });
+        }
+      ;  }
+      FilterCompletedTodo(ev: any) {
+        const val = ev.detail.value;
+          if(val && val.trim() !== '') {
+            // eslint-disable-next-line arrow-body-style
+            this.completedTodos = this.completedTodos.filter((item: any) => {
+              return (item.title.toLowerCase().indexOf(val.toLowerCase()) > -1);
+            });
+          }
+        ;  }
     onDeleteTodo(id) {
       this.alertCtrl.create({header: 'Are U sure',
       message: 'Do u really want to todo recipe??',

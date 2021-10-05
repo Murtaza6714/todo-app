@@ -12,15 +12,15 @@
 <ion-content>
   <ion-list>
     <ion-item>
-      <ion-label floating>Title</ion-label>
+      <ion-label floating>Title :</ion-label>
       <ion-input type="text" [(ngModel)]="title"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label floating>Task</ion-label>
+      <ion-label floating>Task :</ion-label>
       <ion-input type="text" [(ngModel)]="task"></ion-input>
     </ion-item>
   </ion-list>
-  <ion-button expand='full' ion-button color="secondary">Save</ion-button>
+  <ion-button expand='full' (click)="saveUpdatedTodo()" ion-button color="secondary">Save</ion-button>
   <!-- <ion-item *ngIf="hasError">
     <ion-title>{{errorMessage}}</ion-title>
   </ion-item> -->

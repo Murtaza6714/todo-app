@@ -20,6 +20,10 @@
       <ion-label floating>Task</ion-label>
       <ion-input type="text" [(ngModel)]="task"></ion-input>
     </ion-item>
+    <ion-item>
+      <ion-label>Mark as High Priority</ion-label>
+        <ion-checkbox slot="start" color="success" (ionChange)="hasHighPriority($event)"></ion-checkbox>
+      </ion-item>
   </ion-list>
   <ion-button expand='full' ion-button color="secondary" (click)="saveTodo()">Save</ion-button>
 </ion-content>
